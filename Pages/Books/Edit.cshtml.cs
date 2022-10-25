@@ -36,8 +36,14 @@ namespace Ionescu_Alex_Daniel_Lab2.Pages.Books
                 return NotFound();
             }
             Book = book;
+            var authorList = _context.Author.Select(x => new
+            {
+                x.ID,
+                FullName = x.LastName + " " + x.FirstName
+            });
             ViewData["PublisherID"] = new SelectList(_context.Set<Publisher>(), "ID",
 "PublisherName");
+            ViewData["AuthorID"] = new SelectList(authorList, "ID", "FullName");
             return Page();
         }
 
