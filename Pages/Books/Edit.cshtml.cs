@@ -32,6 +32,7 @@ namespace Ionescu_Alex_Daniel_Lab2.Pages.Books
 
               Book = await _context.Book
              .Include(b => b.Publisher)
+             .Include(b=>b.Author)
              .Include(b => b.BookCategories).ThenInclude(b => b.Category)
              .AsNoTracking()
              .FirstOrDefaultAsync(m => m.ID == id);
@@ -56,8 +57,7 @@ namespace Ionescu_Alex_Daniel_Lab2.Pages.Books
 
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see https://aka.ms/RazorPagesCRUD.
-        public async Task<IActionResult> OnPostAsync(int? id, string[]
-selectedCategories)
+        public async Task<IActionResult> OnPostAsync(int? id, string[]selectedCategories)
         {
             if (id == null)
             {
@@ -65,6 +65,7 @@ selectedCategories)
             }
             var bookToUpdate = await _context.Book
             .Include(i => i.Publisher)
+            .Include(i=>i.Author)
             .Include(i => i.BookCategories)
             .ThenInclude(i => i.Category)
             .FirstOrDefaultAsync(s => s.ID == id);
@@ -75,8 +76,8 @@ selectedCategories)
             if (await TryUpdateModelAsync<Book>(
             bookToUpdate,
             "Book",
-            i => i.Title, i => i.Author,
-            i => i.Price, i => i.PublishingDate, i => i.Publisher))
+            i => i.Title, i => i.AuthorID,
+            i => i.Price, i => i.PublishingDate, i => i.PublisherID))
             {
                 UpdateBookCategories(_context, selectedCategories, bookToUpdate);
                 await _context.SaveChangesAsync();
