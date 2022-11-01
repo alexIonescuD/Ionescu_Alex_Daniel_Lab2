@@ -27,6 +27,8 @@ namespace Ionescu_Alex_Daniel_Lab2.Pages.Books
                 x.ID,
                 FullName = x.LastName + " " + x.FirstName
             });
+            ViewData["Author"] = new SelectList(_context.Set<Author>(), "ID",
+"FullName");
             ViewData["PublisherID"] = new SelectList(_context.Set<Publisher>(), "ID",
 "PublisherName");
             ViewData["AuthorID"] = new SelectList(authorList, "ID", "FullName");
