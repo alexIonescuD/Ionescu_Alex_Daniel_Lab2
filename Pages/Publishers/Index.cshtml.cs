@@ -42,5 +42,5 @@ namespace Ionescu_Alex_Daniel_Lab2.Pages.Publishers
             }
 
         }
+        }
     }
-}
