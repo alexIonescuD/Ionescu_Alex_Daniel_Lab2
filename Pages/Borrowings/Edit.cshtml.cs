@@ -37,7 +37,7 @@ namespace Ionescu_Alex_Daniel_Lab2.Pages.Borrowings
             }
             Borrowing = borrowing;
            ViewData["BookID"] = new SelectList(_context.Book, "ID", "ID");
-           ViewData["MemberID"] = new SelectList(_context.Member, "ID", "ID");
+           ViewData["MemberID"] = new SelectList(_context.Member, "FullName", "FullName");
             return Page();
         }
 
