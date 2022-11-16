@@ -9,8 +9,8 @@ namespace Ionescu_Alex_Daniel_Lab2.Models
     public class Book
     {
         public int ID { get; set; }
-        [Display(Name = "Book Title")]
 
+        [Display(Name = "Book Title")]
         [StringLength(150, MinimumLength = 3)]
         public string Title { get; set; }
         public int? AuthorID { get; set; }
